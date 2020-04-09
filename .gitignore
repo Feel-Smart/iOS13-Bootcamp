@@ -91,3 +91,6 @@ iOSInjectionProject/
 
 # machine learning
 **/*.mlmodel
+
+# Secret Keys
+**/Secrets.plist
