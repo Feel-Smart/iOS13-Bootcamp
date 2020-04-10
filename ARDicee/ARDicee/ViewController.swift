@@ -20,11 +20,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+//        // let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
+//        let sphere = SCNSphere(radius: 0.1)
+//
+//        let material = SCNMaterial()
+//
+//
+//        // material.diffuse.contents = UIColor.blue
+//        material.diffuse.contents = UIImage(named: "art.scnassets/Mars.jpg")
+//
+//        // cube.materials = [material]
+//        sphere.materials = [material]
+//
+//        let node = SCNNode()
+//
+//        node.position = SCNVector3(0, 0.1, -0.5)
+//
+//        // node.geometry = cube
+//        node.geometry = sphere
+//
+//        sceneView.scene.rootNode.addChildNode(node)
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        sceneView.autoenablesDefaultLighting = true
+        
+        // Create a new scene
+        let diceScene = SCNScene(named: "art.scnassets/diceCollada.scn")!
+
+        if let diceNode = diceScene.rootNode.childNode(withName: "Dice", recursively: true){
+
+            diceNode.position = SCNVector3(x: 0, y: 0, z: -0.1)
+
+            sceneView.scene.rootNode.addChildNode(diceNode)
+
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
