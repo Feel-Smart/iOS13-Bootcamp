@@ -15,6 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     
     var dotNodes = [SCNNode]()
+    var textNode = SCNNode()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if dotNodes.count >= 2 {
+            clearDisplay()
+        }
+        
         if let touchLocation = touches.first?.location(in: sceneView) {
             
             let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
@@ -72,9 +78,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             hitResult.worldTransform.columns.3.z
         )
         
-        dotNodes.append(dotNode)
-        
         sceneView.scene.rootNode.addChildNode(dotNode)
+        
+        dotNodes.append(dotNode)
         
         if dotNodes.count >= 2 {
             calculateDistance()
@@ -83,8 +89,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func calculateDistance() {
-        let start = dotNodes.first!
-        let end = dotNodes.last!
+        let start = dotNodes[0]
+        let end = dotNodes[1]
         
         let distance = sqrtf(
             pow(end.position.x - start.position.x, 2) +
@@ -92,7 +98,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             pow(end.position.z - start.position.z, 2)
         )
         
+        let roundedDistance = Float(round(1000*Float(distance))/1000)
+        
+        let feetDistance = (roundedDistance * 39.37)/12
+        
+        let stringDistance = String(format: "%.3f", feetDistance)
+        
+        displayText(text: "\(stringDistance)", atPosition: end.position)
+        
         print("Distance: \(distance)")
+    }
+    
+    func displayText(text: String, atPosition position: SCNVector3) {
+        
+        let textGeometry = SCNText(string: "\(text) ft", extrusionDepth: 1.0)
+        
+        textGeometry.firstMaterial?.diffuse.contents = UIColor.red
+        
+        textNode = SCNNode(geometry: textGeometry)
+        
+        textNode.position = SCNVector3(position.x, position.y + 0.01, position.z)
+        
+        textNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
+        
+    }
+    
+    func clearDisplay() {
+        for dot in dotNodes {
+            dot.removeFromParentNode()
+            textNode.removeFromParentNode()
+        }
+        dotNodes = [SCNNode]()
+        textNode = SCNNode()
     }
     
 }
