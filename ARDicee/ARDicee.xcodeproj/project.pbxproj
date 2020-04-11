@@ -13,6 +13,7 @@
 		B24FDF522440B75D00B24595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24FDF502440B75D00B24595 /* Main.storyboard */; };
 		B24FDF542440B76200B24595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24FDF532440B76200B24595 /* Assets.xcassets */; };
 		B24FDF572440B76200B24595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24FDF552440B76200B24595 /* LaunchScreen.storyboard */; };
+		B24FDF62244157BD00B24595 /* PlaneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FDF61244157BD00B24595 /* PlaneNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B24FDF532440B76200B24595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B24FDF562440B76200B24595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24FDF582440B76200B24595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B24FDF61244157BD00B24595 /* PlaneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +59,39 @@
 			isa = PBXGroup;
 			children = (
 				B24FDF4A2440B75D00B24595 /* AppDelegate.swift */,
-				B24FDF4E2440B75D00B24595 /* ViewController.swift */,
-				B24FDF502440B75D00B24595 /* Main.storyboard */,
+				B24FDF602441579F00B24595 /* Model */,
+				B24FDF5F2441579900B24595 /* View */,
+				B24FDF5E2441578A00B24595 /* Controller */,
 				B24FDF4C2440B75D00B24595 /* art.scnassets */,
 				B24FDF532440B76200B24595 /* Assets.xcassets */,
 				B24FDF552440B76200B24595 /* LaunchScreen.storyboard */,
 				B24FDF582440B76200B24595 /* Info.plist */,
 			);
 			path = ARDicee;
+			sourceTree = "<group>";
+		};
+		B24FDF5E2441578A00B24595 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B24FDF4E2440B75D00B24595 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B24FDF5F2441579900B24595 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B24FDF502440B75D00B24595 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B24FDF602441579F00B24595 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B24FDF61244157BD00B24595 /* PlaneNode.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B24FDF4F2440B75D00B24595 /* ViewController.swift in Sources */,
+				B24FDF62244157BD00B24595 /* PlaneNode.swift in Sources */,
 				B24FDF4B2440B75D00B24595 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

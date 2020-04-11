@@ -132,20 +132,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     func createPlane(withPlaneAnchor planeAnchor: ARPlaneAnchor) -> SCNNode{
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
+        let position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
         
-        let planeNode = SCNNode()
-        
-        planeNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        
-        planeNode.transform = SCNMatrix4MakeRotation(-Float.pi/2, 1, 0, 0)
-        
-        let gridMaterial = SCNMaterial()
-        
-        gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
-        
-        plane.materials = [gridMaterial]
-        
-        planeNode.geometry = plane
+        let planeNode = PlaneNode(plane, position)
         
         return planeNode
     }
