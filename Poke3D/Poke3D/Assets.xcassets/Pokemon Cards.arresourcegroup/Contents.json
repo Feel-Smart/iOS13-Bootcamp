@@ -1,0 +1,14 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "resources" : [
+    {
+      "filename" : "charmander-card.arreferenceimage"
+    },
+    {
+      "filename" : "rhydon-card.arreferenceimage"
+    }
+  ]
+}

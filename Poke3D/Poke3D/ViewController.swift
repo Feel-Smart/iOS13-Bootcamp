@@ -36,7 +36,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
             configuration.trackingImages = imageToTrack
             
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("Images Successfully Added")
             
@@ -58,6 +58,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         if let imageAnchor = anchor as? ARImageAnchor {
             
+            let pokemonTracked = imageAnchor.referenceImage.name!
+            
             let plane = SCNPlane(
                 width: imageAnchor.referenceImage.physicalSize.width,
                 height: imageAnchor.referenceImage.physicalSize.height
@@ -71,20 +73,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             node.addChildNode(planeNode)
             
-            if let pokeScene = SCNScene(named: "art.scnassets/Charmander.scn"){
+            if pokemonTracked == "charmander-card" {
+            
+                displayPokemon(node: planeNode, pokemon: "art.scnassets/Charmander.scn")
                 
-                if let pokeNode = pokeScene.rootNode.childNodes.first {
-                    
-                    pokeNode.eulerAngles.x = (.pi/2)
-                    planeNode.addChildNode(pokeNode)
-                    
-                }
+            } else if pokemonTracked == "rhydon-card" {
+                
+                displayPokemon(node: planeNode, pokemon: "art.scnassets/RhydonM.scn")
                 
             }
+                
+                
             
         }
         
         return node
+    }
+    
+    fileprivate func displayPokemon(node planeNode: SCNNode, pokemon pokemonAsset: String) {
+        if let pokeScene = SCNScene(named: pokemonAsset){
+            
+            if let pokeNode = pokeScene.rootNode.childNodes.first {
+                
+                pokeNode.eulerAngles.x = (.pi/2)
+                planeNode.addChildNode(pokeNode)
+                
+            }
+            
+        }
     }
 
 }
